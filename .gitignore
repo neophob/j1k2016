@@ -1,0 +1,4 @@
+*.crushed.js
+*.min.js
+build/*
+node_modules/*
