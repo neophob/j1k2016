@@ -9,6 +9,8 @@ g.addColorStop(0.3, "rgba(255, 0, 255, 0.5)");
 g.addColorStop(0.8, "rgba(0, 0, 255, 0.5)");
 g.addColorStop(1, "rgba(0, 0, 0, 0.5)");
 
+// see http://victorblog.com/html5-canvas-gradient-creator/
+
 // # init STARS
 s = [4]
 s[0] = [];s[1] = [];s[2] = [];s[3] = [];
@@ -25,8 +27,8 @@ p = Math.pow(2, Math.ceil(Math.log(w) / (Math.log(2))));
 m[p] = m[0] = h/4;
 // create the rest of the points
 for (l = 1; l < p; l *= 2) {
-  for (j = (p / l) / 2; j < p; j += p / l) {
-      m[j] = ((m[j - (p / l) / 2] + m[j + (p / l) / 2]) / 2) + (Math.random() * -d + d);
+  for (z = (p / l) / 2; z < p; z += p / l) {
+      m[z] = ((m[z - (p / l) / 2] + m[z + (p / l) / 2]) / 2) + (Math.random() * -d + d);
   }
   d *= 0.45;
 }
@@ -62,7 +64,7 @@ setInterval(function() {
     }
     //horizontal lines
     for (l = 0; l <20; l++) {
-	    y = l * 179.75881754 / (8 + l * -0.43837106194) + h/2;
+	    y = l * 179.75882 / (8 + l * -0.43837) + h/2;
     	drawLine(0, y, w, y);
     }	
     //clear top lines
@@ -109,17 +111,30 @@ setInterval(function() {
 		}	
 	} 
 
-
 	//__ draw mountain
     c.lineWidth = 1;
 	c.fillStyle = "#000";
     c.beginPath();
-    c.moveTo(0, h/4+m[0]);    
+    c.moveTo(0, h/4+m[0]);
 	for (i = 0; i<m.length; i++) {
 	    c.lineTo(i * w / (m.length-1), h/4+h/2-m[i]);
 	}
     c.closePath();  
     c.fill();
+
+    //draw TRIANGLE
+	c.fillStyle = "rgba(255, 0, 255, 0.3)";
+	c.strokeStyle = "#000";
+	c.lineWidth = 2;
+    c.beginPath();
+    c.moveTo(w/2, h/2+127.49);//255*Math.sin(Math.PI/6) );
+    c.lineTo(w/2, h/2+127.49);//255*Math.sin(Math.PI/6) );
+    c.lineTo(w/2-/*255*Math.cos(Math.PI/6)*/220.84, h/2-255 );
+    c.lineTo(w/2+/*255*Math.cos(Math.PI/6)*/220.84, h/2-255 );
+    c.closePath();  
+    c.fill();
+    c.stroke();		
+
 
 	u+=0.5;
 }, 50);
