@@ -12,12 +12,12 @@ g.addColorStop(1, "rgba(0, 0, 0, 0.5)");
 
 // # init STARS
 s = [4]
-for (layer = 0; layer<4; layer++) {
-	s[layer] = [];
-}
+s[0] = [];s[1] = [];s[2] = [];s[3] = [];
 
 // # init CANONS
-f = {}
+f = [2]
+f[0] = {}
+f[1] = {}
 
 // # init MOUNTAINS, ripped from http://codepen.io/loktar00/pen/uEJKl/?editors=0010
 m = [];
@@ -77,41 +77,41 @@ setInterval(function() {
 	c.fillRect(0, 0, w, h/2);
 
 	//__ draw stars
-	size = 2;
 	c.fillStyle = "rgba(255, 255, 255, 0.5)";
 	for (layer = 0; layer<4; layer++) {		
 		for (star = 0; star<64*4; star++) {
 			if (!s[layer][star]) {
-				s[layer][star] = [ran() * w, ran() * h];
+				s[layer][star] = [ran() * w, ran() * h, 1 + ran() * 1, 1 + ran() * 1];
 			} else {
 				s[layer][star][0] += layer*0.1;
 			}
-			c.fillRect(s[layer][star][0], s[layer][star][1], size, 1);
+			c.fillRect(s[layer][star][0], s[layer][star][1], s[layer][star][2], s[layer][star][3]);
 			if (s[layer][star][0] > w) {
-				s[layer][star] = [0, ran() * h];
+				s[layer][star] = [0, ran() * h, , 1 + ran() * 1, 1 + ran() * 1];
 			}
 		}
-		size = 1;
 	}
 
 	// __ draw CANONS
+	for (layer = 0; layer<2; layer++) {		
+		if (f[layer].l > 0) {
+			c.strokeStyle = "rgba(255, 0, 255, 0.3)";
+			c.lineWidth = 6;
+		    c.beginPath();
+		    c.moveTo(f[layer].s, h/2);
+		    c.lineTo(f[layer].t, 0);
+		    c.closePath();  
+		    c.stroke();	
+		    f[layer].l--;	
+		} else {
+			if (ran() < 0.1) {
+				f[layer].s = ran() * w;
+				f[layer].t = f[layer].s + (ran() * 250) - 125;
+				f[layer].l = 80;
+			}		
+		}	
+	} 
 
-	if (f.l > 0) {
-		c.strokeStyle = "rgba(255, 0, 255, 0.3)";
-		c.lineWidth = 6;
-	    c.beginPath();
-	    c.moveTo(f.s, h/2);
-	    c.lineTo(f.t, 0);
-	    c.closePath();  
-	    c.stroke();	
-	    f.l--;	
-	} else {
-		if (ran() < 0.1) {
-			f.s = ran() * w;
-			f.t = f.s + (ran() * 250) - 125;
-			f.l = 80;
-		}		
-	}
 
 	//__ draw mountain
     c.lineWidth = 1;
@@ -123,6 +123,27 @@ setInterval(function() {
 	}
     c.closePath();  
     c.fill();
+/*
+    c.lineWidth = 4;
+	c.strokeStyle = "#0ff";
+    c.beginPath();
+    c.moveTo(w/3, h/3);
+    c.lineTo(w/1.5, h/3);
+    c.lineTo(w/2, h/1.5);   
+    c.lineTo(w/3, h/3);
+    c.closePath();  
+    c.stroke();
+/*
+    c.lineWidth = 2;
+	c.strokeStyle = "#f0f";
+    c.beginPath();
+    c.moveTo(w/3-2, h/3+2);
+    c.lineTo(w/1.5-2, h/3+2);
+    c.lineTo(w/2-2, h/1.5+2);   
+    c.lineTo(w/3-2, h/3+2);
+    c.closePath();  
+    c.stroke();*/
+
 
 	frame+=0.5;
 }, 50);
