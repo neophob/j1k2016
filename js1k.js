@@ -4,11 +4,11 @@ frame=0;
 ran = Math.random;
 
 // # init gradient
-var grd=c.createRadialGradient(w/2, h/1.3, h/3.0, w/2, h/1.3, h/1.3);
-grd.addColorStop(0, "rgba(255, 255, 255, 0.5)");
-grd.addColorStop(0.3, "rgba(255, 0, 255, 0.5)");
-grd.addColorStop(0.8, "rgba(0, 0, 255, 0.5)");
-grd.addColorStop(1, "rgba(0, 0, 0, 0.5)");
+g=c.createRadialGradient(w/2, h/1.3, h/3.0, w/2, h/1.3, h/1.3);
+g.addColorStop(0, "rgba(255, 255, 255, 0.5)");
+g.addColorStop(0.3, "rgba(255, 0, 255, 0.5)");
+g.addColorStop(0.8, "rgba(0, 0, 255, 0.5)");
+g.addColorStop(1, "rgba(0, 0, 0, 0.5)");
 
 
 // # init STARS
@@ -19,7 +19,7 @@ for (layer = 0; layer<4; layer++) {
 
 // # init MOUNTAINS, ripped from http://codepen.io/loktar00/pen/uEJKl/?editors=0010
 m = [];
-displacement = h/4, power = Math.pow(2, Math.ceil(Math.log(w) / (Math.log(2))));
+d = h/4, power = Math.pow(2, Math.ceil(Math.log(w) / (Math.log(2))));
 
 // set the start height and end height for the terrain
 m[power] = m[0] = h/4;
@@ -27,9 +27,9 @@ m[power] = m[0] = h/4;
 // create the rest of the points
 for (i = 1; i < power; i *= 2) {
   for (j = (power / i) / 2; j < power; j += power / i) {
-      m[j] = ((m[j - (power / i) / 2] + m[j + (power / i) / 2]) / 2) + (ran() * -displacement + displacement);
+      m[j] = ((m[j - (power / i) / 2] + m[j + (power / i) / 2]) / 2) + (ran() * -d + d);
   }
-  displacement *= 0.45;
+  d *= 0.45;
 }
 
 setInterval(function() {
@@ -72,7 +72,7 @@ setInterval(function() {
 
 
 	// __ draw gradient
-	c.fillStyle = grd;
+	c.fillStyle = g;
 	c.fillRect(0, 0, w, h/2);
 
 	//__ draw stars
