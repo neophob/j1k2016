@@ -25,9 +25,9 @@ d = h/4, power = Math.pow(2, Math.ceil(Math.log(w) / (Math.log(2))));
 // set the start height and end height for the terrain
 m[power] = m[0] = h/4;
 // create the rest of the points
-for (i = 1; i < power; i *= 2) {
-  for (j = (power / i) / 2; j < power; j += power / i) {
-      m[j] = ((m[j - (power / i) / 2] + m[j + (power / i) / 2]) / 2) + (ran() * -d + d);
+for (l = 1; l < power; l *= 2) {
+  for (j = (power / l) / 2; j < power; j += power / l) {
+      m[j] = ((m[j - (power / l) / 2] + m[j + (power / l) / 2]) / 2) + (ran() * -d + d);
   }
   d *= 0.45;
 }
@@ -60,12 +60,12 @@ setInterval(function() {
 
 	// __ draw GRID
     //vertical lines
-    for (grid = -50; grid < 50; grid++) {
-    	drawLine(w/2, h/4, grid*96 + frame%96, h);
+    for (l = -50; l < 50; l++) {
+    	drawLine(w/2, h/4, l*96 + frame%96, h);
     }
     //horizontal lines
-    for (grid = 0; grid <20; grid++) {
-	    y = grid * 179.75881754 / (8 + grid * -0.43837106194) + h/2;
+    for (l = 0; l <20; l++) {
+	    y = l * 179.75881754 / (8 + l * -0.43837106194) + h/2;
     	drawLine(0, y, w, y);
     }	
     //clear top lines
@@ -78,36 +78,36 @@ setInterval(function() {
 
 	//__ draw stars
 	c.fillStyle = "rgba(255, 255, 255, 0.5)";
-	for (layer = 0; layer<4; layer++) {		
-		for (star = 0; star<64*4; star++) {
-			if (!s[layer][star]) {
-				s[layer][star] = [ran() * w, ran() * h, 1 + ran() * 1, 1 + ran() * 1];
+	for (l = 0; l<4; l++) {		
+		for (z = 0; z<64*4; z++) {
+			if (!s[l][z]) {
+				s[l][z] = [ran() * w, ran() * h, 1 + ran() * 1, 1 + ran() * 1];
 			} else {
-				s[layer][star][0] += layer*0.1;
+				s[l][z][0] += l*0.1;
 			}
-			c.fillRect(s[layer][star][0], s[layer][star][1], s[layer][star][2], s[layer][star][3]);
-			if (s[layer][star][0] > w) {
-				s[layer][star] = [0, ran() * h, , 1 + ran() * 1, 1 + ran() * 1];
+			c.fillRect(s[l][z][0], s[l][z][1], s[l][z][2], s[l][z][3]);
+			if (s[l][z][0] > w) {
+				s[l][z] = [0, ran() * h, , 1 + ran() * 1, 1 + ran() * 1];
 			}
 		}
 	}
 
 	// __ draw CANONS
-	for (layer = 0; layer<2; layer++) {		
-		if (f[layer].l > 0) {
+	for (l = 0; l<2; l++) {		
+		if (f[l].l > 0) {
 			c.strokeStyle = "rgba(255, 0, 255, 0.3)";
 			c.lineWidth = 6;
 		    c.beginPath();
-		    c.moveTo(f[layer].s, h/2);
-		    c.lineTo(f[layer].t, 0);
+		    c.moveTo(f[l].s, h/2);
+		    c.lineTo(f[l].t, 0);
 		    c.closePath();  
 		    c.stroke();	
-		    f[layer].l--;	
+		    f[l].l--;	
 		} else {
 			if (ran() < 0.1) {
-				f[layer].s = ran() * w;
-				f[layer].t = f[layer].s + (ran() * 250) - 125;
-				f[layer].l = 80;
+				f[l].s = ran() * w;
+				f[l].t = f[l].s + (ran() * 250) - 125;
+				f[l].l = 80;
 			}		
 		}	
 	} 
