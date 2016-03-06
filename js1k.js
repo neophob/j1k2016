@@ -16,6 +16,9 @@ for (layer = 0; layer<4; layer++) {
 	s[layer] = [];
 }
 
+// # init CANONS
+f = {}
+
 // # init MOUNTAINS, ripped from http://codepen.io/loktar00/pen/uEJKl/?editors=0010
 m = [];
 d = h/4, power = Math.pow(2, Math.ceil(Math.log(w) / (Math.log(2))));
@@ -32,11 +35,12 @@ for (i = 1; i < power; i *= 2) {
 setInterval(function() {
 
 	function drawLine(x1,y1,x2,y2){
-	    c.lineWidth = 2;
-		if (ran() < 0.01) {
-			c.strokeStyle = "rgba(255, 0, 255, 0.7)";
+		if (ran() < 0.05) {
+			c.strokeStyle = "rgba(255, 64, 255, 0.65)";
+			c.lineWidth = 4;
 		} else {
 			c.strokeStyle = "rgba(255, 0, 255, 0.5)";
+	    	c.lineWidth = 2;
 		}	
 
 	    c.beginPath();
@@ -90,9 +94,28 @@ setInterval(function() {
 		size = 1;
 	}
 
+	// __ draw CANONS
+
+	if (f.l > 0) {
+		c.strokeStyle = "rgba(255, 0, 255, 0.3)";
+		c.lineWidth = 6;
+	    c.beginPath();
+	    c.moveTo(f.s, h/2);
+	    c.lineTo(f.t, 0);
+	    c.closePath();  
+	    c.stroke();	
+	    f.l--;	
+	} else {
+		if (ran() < 0.1) {
+			f.s = ran() * w;
+			f.t = f.s + (ran() * 250) - 125;
+			f.l = 80;
+		}		
+	}
+
 	//__ draw mountain
     c.lineWidth = 1;
-	c.fillStyle = "#000";	
+	c.fillStyle = "#000";
     c.beginPath();
     c.moveTo(0, h/4+m[0]);    
 	for (i = 0; i<m.length; i++) {
@@ -101,6 +124,6 @@ setInterval(function() {
     c.closePath();  
     c.fill();
 
-	frame++;
+	frame+=0.5;
 }, 50);
 
