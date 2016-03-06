@@ -1,8 +1,8 @@
 w = a.width;
 h = a.height;
-n = (k = c.createImageData(w, h)).data;
 frame=0;
 ran = Math.random;
+
 //How to draw a Perspective-Correct Grid in 2D
 //https://jsfiddle.net/epistemex/vz8qk4q1/
 
@@ -30,30 +30,19 @@ function drawLine(x1,y1,x2,y2){
 
 function clear(x1,y1,x2,y2){
 	c.rect(x1,y1,x2,y2);
-	c.fillStyle = "rgba(0, 0, 0, 1)";
+	c.fillStyle = "#000";
 	c.fill();
 }    
 
 function drawGrid() {
-    gridabstand = 96;    
-    gridsteps = parseInt(w / gridabstand);
-
     //vertical lines
     for (grid = -50; grid < 50; grid++) {
-    	drawLine(w/2, 50, grid*gridabstand + frame%gridabstand, h);
+    	drawLine(w/2, 50, grid*96 + frame%96, h);
     }
 
     //horizontal lines
-    rd = -26 * Math.PI / 180;
-    //rd = -24 * Math.PI / 180;
-    ca = Math.cos(rd);
-    sa = Math.sin(rd);
     for (grid = 0; grid <20; grid++) {
-	    ry = grid * ca;
-	    rz = grid * sa;
-	    f = 200 / (8 + rz);
-	    y = ry * f + h/2;
-
+	    y = grid * 179.75881754 / (8 + grid * -0.43837106194) + h/2;
     	drawLine(0, y, w, y);
     }	
 
@@ -65,20 +54,17 @@ stars = [4]
 for (layer = 0; layer<4; layer++) {
 	stars[layer] = [];
 }
-function drawStars() {
+function drawStars() {	
 	size = 2;
-	for (layer = 0; layer<4; layer++) {
-		c.fillStyle = "rgba(255, 255, 255, 0.5)";
-
+	c.fillStyle = "rgba(255, 255, 255, 0.5)";
+	for (layer = 0; layer<4; layer++) {		
 		for (star = 0; star<64; star++) {
 			if (!stars[layer][star]) {
 				stars[layer][star] = [ran() * w, ran() * h/2.2];
 			} else {
 				stars[layer][star][0] += layer*0.1;
 			}
-			x = stars[layer][star][0];
-			y = stars[layer][star][1];
-			c.fillRect(x, y, size, 1);
+			c.fillRect(stars[layer][star][0], stars[layer][star][1], size, 1);
 			if (stars[layer][star][0] > w) {
 				stars[layer][star] = [0, ran() * h/2.2];
 			}
@@ -89,28 +75,24 @@ function drawStars() {
 
 //ripped from http://codepen.io/loktar00/pen/uEJKl/?editors=0010
 mountain = [];
-var displacement = h/4, power = Math.pow(2, Math.ceil(Math.log(w) / (Math.log(2))));
+displacement = h/4, power = Math.pow(2, Math.ceil(Math.log(w) / (Math.log(2))));
 
 // set the start height and end height for the terrain
-mountain[0] = h/4;
-mountain[power] = mountain[0];
+mountain[power] = mountain[0] = h/4;
 
 // create the rest of the points
-for (var i = 1; i < power; i *= 2) {
-  for (var j = (power / i) / 2; j < power; j += power / i) {
-      mountain[j] = ((mountain[j - (power / i) / 2] + mountain[j + (power / i) / 2]) / 2) + Math.floor(Math.random() * -displacement + displacement);
+for (i = 1; i < power; i *= 2) {
+  for (j = (power / i) / 2; j < power; j += power / i) {
+      mountain[j] = ((mountain[j - (power / i) / 2] + mountain[j + (power / i) / 2]) / 2) + (ran() * -displacement + displacement);
   }
   displacement *= 0.45;
 }
 
 function brownianMotion() {
-    c.lineWidth = 1;
-	c.fillStyle = "rgba(0, 0, 0, 1)";
     c.beginPath();
-    c.moveTo(0, h/4+mountain[0]);
-    l = w / (mountain.length-1); 
-	for (m = 0; m<mountain.length; m++) {
-	    c.lineTo(m * l, h/4+h/2-mountain[m]);
+    c.moveTo(0, h/4+mountain[0]);    
+	for (i = 0; i<mountain.length; i++) {
+	    c.lineTo(i * w / (mountain.length-1), h/4+h/2-mountain[i]);
 	}
     c.closePath();  
     c.fill();
@@ -125,6 +107,10 @@ setInterval(function() {
 	c.fillRect(0, 0, w, h/2);
 
 	drawStars();
+
+	//draw mountain
+    c.lineWidth = 1;
+	c.fillStyle = "#000";	
 	brownianMotion()
 
 	frame++;
