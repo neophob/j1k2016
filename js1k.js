@@ -1,6 +1,6 @@
 w = a.width;
 h = a.height;
-frame=0;
+u=0;
 ran = Math.random;
 
 // # init gradient
@@ -61,7 +61,7 @@ setInterval(function() {
 	// __ draw GRID
     //vertical lines
     for (l = -50; l < 50; l++) {
-    	drawLine(w/2, h/4, l*96 + frame%96, h);
+    	drawLine(w/2, h/4, l*96 + u%96, h);
     }
     //horizontal lines
     for (l = 0; l <20; l++) {
@@ -145,6 +145,6 @@ setInterval(function() {
     c.stroke();*/
 
 
-	frame+=0.5;
+	u+=0.5;
 }, 50);
 
