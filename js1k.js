@@ -10,7 +10,6 @@ g.addColorStop(0.3, "rgba(255, 0, 255, 0.5)");
 g.addColorStop(0.8, "rgba(0, 0, 255, 0.5)");
 g.addColorStop(1, "rgba(0, 0, 0, 0.5)");
 
-
 // # init STARS
 s = [4]
 for (layer = 0; layer<4; layer++) {
@@ -20,10 +19,8 @@ for (layer = 0; layer<4; layer++) {
 // # init MOUNTAINS, ripped from http://codepen.io/loktar00/pen/uEJKl/?editors=0010
 m = [];
 d = h/4, power = Math.pow(2, Math.ceil(Math.log(w) / (Math.log(2))));
-
 // set the start height and end height for the terrain
 m[power] = m[0] = h/4;
-
 // create the rest of the points
 for (i = 1; i < power; i *= 2) {
   for (j = (power / i) / 2; j < power; j += power / i) {
@@ -60,7 +57,7 @@ setInterval(function() {
 	// __ draw GRID
     //vertical lines
     for (grid = -50; grid < 50; grid++) {
-    	drawLine(w/2, 50, grid*96 + frame%96, h);
+    	drawLine(w/2, h/4, grid*96 + frame%96, h);
     }
     //horizontal lines
     for (grid = 0; grid <20; grid++) {
@@ -79,15 +76,15 @@ setInterval(function() {
 	size = 2;
 	c.fillStyle = "rgba(255, 255, 255, 0.5)";
 	for (layer = 0; layer<4; layer++) {		
-		for (star = 0; star<64; star++) {
+		for (star = 0; star<64*4; star++) {
 			if (!s[layer][star]) {
-				s[layer][star] = [ran() * w, ran() * h/2.2];
+				s[layer][star] = [ran() * w, ran() * h];
 			} else {
 				s[layer][star][0] += layer*0.1;
 			}
 			c.fillRect(s[layer][star][0], s[layer][star][1], size, 1);
 			if (s[layer][star][0] > w) {
-				s[layer][star] = [0, ran() * h/2.2];
+				s[layer][star] = [0, ran() * h];
 			}
 		}
 		size = 1;
