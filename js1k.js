@@ -1,7 +1,6 @@
 w = a.width;
 h = a.height;
 u=0;
-ran = Math.random;
 
 // # init gradient
 g=c.createRadialGradient(w/2, h/1.3, h/3.0, w/2, h/1.3, h/1.3);
@@ -21,13 +20,14 @@ f[1] = {}
 
 // # init MOUNTAINS, ripped from http://codepen.io/loktar00/pen/uEJKl/?editors=0010
 m = [];
-d = h/4, power = Math.pow(2, Math.ceil(Math.log(w) / (Math.log(2))));
+d = h/4
+p = Math.pow(2, Math.ceil(Math.log(w) / (Math.log(2))));
 // set the start height and end height for the terrain
-m[power] = m[0] = h/4;
+m[p] = m[0] = h/4;
 // create the rest of the points
-for (l = 1; l < power; l *= 2) {
-  for (j = (power / l) / 2; j < power; j += power / l) {
-      m[j] = ((m[j - (power / l) / 2] + m[j + (power / l) / 2]) / 2) + (ran() * -d + d);
+for (l = 1; l < p; l *= 2) {
+  for (j = (p / l) / 2; j < p; j += p / l) {
+      m[j] = ((m[j - (p / l) / 2] + m[j + (p / l) / 2]) / 2) + (Math.random() * -d + d);
   }
   d *= 0.45;
 }
@@ -35,7 +35,7 @@ for (l = 1; l < power; l *= 2) {
 setInterval(function() {
 
 	function drawLine(x1,y1,x2,y2){
-		if (ran() < 0.05) {
+		if (Math.random() < 0.05) {
 			c.strokeStyle = "rgba(255, 64, 255, 0.65)";
 			c.lineWidth = 4;
 		} else {
@@ -81,13 +81,13 @@ setInterval(function() {
 	for (l = 0; l<4; l++) {		
 		for (z = 0; z<64*4; z++) {
 			if (!s[l][z]) {
-				s[l][z] = [ran() * w, ran() * h, 1 + ran() * 1, 1 + ran() * 1];
+				s[l][z] = [Math.random() * w, Math.random() * h, 1 + Math.random() * 1, 1 + Math.random() * 1];
 			} else {
 				s[l][z][0] += l*0.1;
 			}
 			c.fillRect(s[l][z][0], s[l][z][1], s[l][z][2], s[l][z][3]);
 			if (s[l][z][0] > w) {
-				s[l][z] = [0, ran() * h, , 1 + ran() * 1, 1 + ran() * 1];
+				s[l][z] = [0, Math.random() * h, , 1 + Math.random() * 1, 1 + Math.random() * 1];
 			}
 		}
 	}
@@ -104,9 +104,9 @@ setInterval(function() {
 		    c.stroke();	
 		    f[l].l--;	
 		} else {
-			if (ran() < 0.1) {
-				f[l].s = ran() * w;
-				f[l].t = f[l].s + (ran() * 250) - 125;
+			if (Math.random() < 0.1) {
+				f[l].s = Math.random() * w;
+				f[l].t = f[l].s + (Math.random() * 250) - 125;
 				f[l].l = 80;
 			}		
 		}	
