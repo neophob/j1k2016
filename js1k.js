@@ -14,9 +14,8 @@ s = [4]
 s[0] = [];s[1] = [];s[2] = [];s[3] = [];
 
 // # init CANONS
-f = [2]
-f[0] = {}
-f[1] = {}
+f = [3]
+f[0] = {}; f[1] = {}; f[2] = {}
 
 // # init MOUNTAINS, ripped from http://codepen.io/loktar00/pen/uEJKl/?editors=0010
 m = [];
@@ -35,14 +34,12 @@ for (l = 1; l < p; l *= 2) {
 setInterval(function() {
 
 	function drawLine(x1,y1,x2,y2){
+		c.strokeStyle = "rgba(255, 0, 255, 0.5)";
+    	c.lineWidth = 2;
 		if (Math.random() < 0.05) {
 			c.strokeStyle = "rgba(255, 64, 255, 0.65)";
 			c.lineWidth = 4;
-		} else {
-			c.strokeStyle = "rgba(255, 0, 255, 0.5)";
-	    	c.lineWidth = 2;
 		}	
-
 	    c.beginPath();
 	    c.moveTo(x1, y1); 
 	    c.lineTo(x2, y2);
@@ -93,7 +90,7 @@ setInterval(function() {
 	}
 
 	// __ draw CANONS
-	for (l = 0; l<2; l++) {		
+	for (l = 0; l<3; l++) {		
 		if (f[l].l > 0) {
 			c.strokeStyle = "rgba(255, 0, 255, 0.3)";
 			c.lineWidth = 6;
@@ -123,28 +120,6 @@ setInterval(function() {
 	}
     c.closePath();  
     c.fill();
-/*
-    c.lineWidth = 4;
-	c.strokeStyle = "#0ff";
-    c.beginPath();
-    c.moveTo(w/3, h/3);
-    c.lineTo(w/1.5, h/3);
-    c.lineTo(w/2, h/1.5);   
-    c.lineTo(w/3, h/3);
-    c.closePath();  
-    c.stroke();
-/*
-    c.lineWidth = 2;
-	c.strokeStyle = "#f0f";
-    c.beginPath();
-    c.moveTo(w/3-2, h/3+2);
-    c.lineTo(w/1.5-2, h/3+2);
-    c.lineTo(w/2-2, h/1.5+2);   
-    c.lineTo(w/3-2, h/3+2);
-    c.closePath();  
-    c.stroke();*/
-
 
 	u+=0.5;
 }, 50);
-
