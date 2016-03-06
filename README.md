@@ -1,17 +1,16 @@
-js1k template
-=============
+# js2016
 
-Usage
------
- * Fork this repo
- * Install dependencies with `npm install`
- * Create interesting javascript in js1k.js
- * Run `grunt` to make an optimized build in `js1k.crushed.js`
- * Run `grunt serve` to start a local webserver at http://localhost:8000/
- * Point your browser at [index.html](http://localhost:8000/index.html) or [index-crushed.html](http://localhost:8000/index-crushed.html) to view in the contest shim
- * Submit to [js1k](http://js1k.com/)
 
-License
--------
-MIT
-# j1k2016
+## hacks
+
+open node_modules/regpack/regPack.js and change those settings:
+
+```
+			withMath : true,
+			hash2DContext : true,
+			hashWebGLContext : false,
+			hashAudioContext : false,
+			contextVariableName : 'c',
+```
+
+this safes about 50 bytes. there should be some kind of cli parameters, but i'm too lazy to figure out how...

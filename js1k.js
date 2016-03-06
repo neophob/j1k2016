@@ -74,25 +74,25 @@ function drawStars() {
 }
 
 //ripped from http://codepen.io/loktar00/pen/uEJKl/?editors=0010
-mountain = [];
+m = [];
 displacement = h/4, power = Math.pow(2, Math.ceil(Math.log(w) / (Math.log(2))));
 
 // set the start height and end height for the terrain
-mountain[power] = mountain[0] = h/4;
+m[power] = m[0] = h/4;
 
 // create the rest of the points
 for (i = 1; i < power; i *= 2) {
   for (j = (power / i) / 2; j < power; j += power / i) {
-      mountain[j] = ((mountain[j - (power / i) / 2] + mountain[j + (power / i) / 2]) / 2) + (ran() * -displacement + displacement);
+      m[j] = ((m[j - (power / i) / 2] + m[j + (power / i) / 2]) / 2) + (ran() * -displacement + displacement);
   }
   displacement *= 0.45;
 }
 
 function brownianMotion() {
     c.beginPath();
-    c.moveTo(0, h/4+mountain[0]);    
-	for (i = 0; i<mountain.length; i++) {
-	    c.lineTo(i * w / (mountain.length-1), h/4+h/2-mountain[i]);
+    c.moveTo(0, h/4+m[0]);    
+	for (i = 0; i<m.length; i++) {
+	    c.lineTo(i * w / (m.length-1), h/4+h/2-m[i]);
 	}
     c.closePath();  
     c.fill();
