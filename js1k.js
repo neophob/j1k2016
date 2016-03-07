@@ -37,7 +37,6 @@ setInterval(function() {
   c.fillStyle = "#000";
   c.fill();
 
-
 	// __ draw GRID
     //vertical lines
     for (l = -50; l < 50; l++) {
@@ -82,7 +81,7 @@ setInterval(function() {
 	c.fillRect(0, 0, w, h/2);
 
   // __ draw PLANET
-  c.fillStyle = "rgba(255, 255, 255, 0.1)";
+  c.fillStyle = "rgba(255, 255, 255, 0.05)";
   c.beginPath();
   c.arc(100, -h/8, h/2, 0, 2*Math.PI);
   c.fill();
@@ -136,14 +135,15 @@ setInterval(function() {
   c.fill();
 
     //draw TRIANGLE
+  i=20*Math.cos(u/128);
 	c.fillStyle = "rgba(255, 0, 255, 0.3)";
 	c.strokeStyle = "#000";
 	c.lineWidth = 2;
   c.beginPath();
-  c.moveTo(w/2, h/2+127);//255*Math.sin(Math.PI/6) );
-  c.lineTo(w/2, h/2+127);//255*Math.sin(Math.PI/6) );
-  c.lineTo(w/2-/*255*Math.cos(Math.PI/6)*/220.8, h/2-255 );
-  c.lineTo(w/2+/*255*Math.cos(Math.PI/6)*/220.8, h/2-255 );
+  c.moveTo(w/2, h/2+127-i);//255*Math.sin(Math.PI/6) );
+  c.lineTo(w/2, h/2+127-i);//255*Math.sin(Math.PI/6) );
+  c.lineTo(w/2-/*255*Math.cos(Math.PI/6)*/220.8-i, i+h/2-255 ); //top left
+  c.lineTo(w/2+/*255*Math.cos(Math.PI/6)*/i+220.8, i+h/2-255 ); //top right
   c.closePath();
   c.fill();
   c.stroke();
