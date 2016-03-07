@@ -12,7 +12,7 @@ g.addColorStop(1, "rgba(0, 0, 0, 0.5)");
 // see http://victorblog.com/html5-canvas-gradient-creator/
 
 // # init STARS
-s = [ [],[],[],[] ];
+s = [ ];
 
 // # init CANONS
 f = [ {}, {}, {} ];
@@ -89,17 +89,16 @@ setInterval(function() {
 
 	//__ draw stars
 	c.fillStyle = "rgba(255, 255, 255, 0.5)";
-	for (l = 0; l<4; l++) {
-		for (z = 0; z<99; z++) {
-			if (!s[l][z]) {
-				s[l][z] = [Math.random() * w, Math.random() * h/2, 1 + Math.random() * 2, 1 + Math.random() * 2];
-			} else {
-				s[l][z][0] += l*0.1;
-			}
-			c.fillRect(s[l][z][0], s[l][z][1], s[l][z][2], s[l][z][3]);
-			if (s[l][z][0] > w) {
-				s[l][z] = [0, Math.random() * h/2, 1 + Math.random() * 2, 1 + Math.random() * 2];
-			}
+	for (i = 0; i<500; i++) {
+		if (!s[i]) {
+      //array value: xpos, ypos, xsize, ysize, speed
+			s[i] = [Math.random() * w, Math.random() * h/2, 1 + Math.random() * 2, 1 + Math.random() * 2, Math.random() * 0.4];
+		} else {
+			s[i][0] += s[i][4];
+		}
+		c.fillRect(s[i][0], s[i][1], s[i][2], s[i][3]);
+		if (s[i][0] > w) {
+			s[i] = [0, Math.random() * h/2, 1 + Math.random() * 2, 1 + Math.random() * 2, Math.random() * 0.4];
 		}
 	}
 
@@ -118,14 +117,14 @@ setInterval(function() {
 			if (Math.random() < 0.1) {
 				f[l].s = Math.random() * (w-250) + 125;
 				f[l].t = f[l].s + (Math.random() * 250) - 125;
-				f[l].l = 80;
+				f[l].l = 60 + Math.random() * 30;
 			}
 		}
 	}
 
 	//__ draw mountain
-  c.lineWidth = 1;
-	c.fillStyle = "#000";
+  c.lineWidth = 2;
+  c.fillStyle = "#000";
   c.beginPath();
   c.moveTo(0, h/4+m[0]);
 	for (i = 0; i<m.length; i++) {
@@ -134,7 +133,7 @@ setInterval(function() {
   c.closePath();
   c.fill();
 
-    //draw TRIANGLE
+  //draw TRIANGLE
   i=20*Math.cos(u/128);
 	c.fillStyle = "rgba(255, 0, 255, 0.3)";
 	c.strokeStyle = "#000";
