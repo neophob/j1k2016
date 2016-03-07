@@ -21,11 +21,11 @@ f[0] = {}; f[1] = {}; f[2] = {}
 
 // # init MOUNTAINS, ripped from http://codepen.io/loktar00/pen/uEJKl/?editors=0010
 m = [];
-d = h/4
 p = Math.pow(2, Math.ceil(Math.log(w) / (Math.log(2))));
 // set the start height and end height for the terrain
 m[p] = m[0] = h/4;
 // create the rest of the points
+d = h/4;
 for (l = 1; l < p; l *= 2) {
   for (z = (p / l) / 2; z < p; z += p / l) {
       m[z] = ((m[z - (p / l) / 2] + m[z + (p / l) / 2]) / 2) + (Math.random() * -d + d);
@@ -35,42 +35,50 @@ for (l = 1; l < p; l *= 2) {
 
 setInterval(function() {
 
-	function drawLine(x1,y1,x2,y2){
-		c.strokeStyle = "rgba(255, 0, 255, 0.5)";
-    	c.lineWidth = 2;
-		if (Math.random() < 0.05) {
-			c.strokeStyle = "rgba(255, 64, 255, 0.65)";
-			c.lineWidth = 4;
-		}
-	    c.beginPath();
-	    c.moveTo(x1, y1);
-	    c.lineTo(x2, y2);
-	    c.stroke();
-	}
-
-	function clear(x1,y1,x2,y2){
-		c.rect(x1,y1,x2,y2);
-		c.fillStyle = "#000";
-		c.fill();
-	}
-
-	clear(0,0,w,h);
+  // clear
+  c.rect(0,0,w,h);
+  c.fillStyle = "#000";
+  c.fill();
 
 	// __ draw GRID
     //vertical lines
     for (l = -50; l < 50; l++) {
-    	drawLine(w/2, h/4, l*96 + u%96, h);
+//    	drawLine(w/2, h/4, l*96 + u%96, h);
+      c.strokeStyle = "rgba(255, 0, 255, 0.5)";
+      c.lineWidth = 2;
+  		if (Math.random() < 0.05) {
+  			c.strokeStyle = "rgba(255, 64, 255, 0.65)";
+  			c.lineWidth = 4;
+  		}
+	    c.beginPath();
+	    c.moveTo(w/2, h/4);
+	    c.lineTo(l*96 + u%96, h);
+	    c.closePath();
+	    c.stroke();
     }
     //horizontal lines
     for (l = 0; l <20; l++) {
-	    y = l * 179.75882 / (8 + l * -0.43837) + h/2;
-    	drawLine(0, y, w, y);
+	    y = l * 179.76 / (8 + l * -0.44) + h/2;
+//    	drawLine(0, y, w, y);
+      c.strokeStyle = "rgba(255, 0, 255, 0.5)";
+      c.lineWidth = 2;
+      if (Math.random() < 0.05) {
+        c.strokeStyle = "rgba(255, 64, 255, 0.65)";
+        c.lineWidth = 4;
+      }
+      c.beginPath();
+      c.moveTo(0, y);
+      c.lineTo(w, y);
+      c.closePath();
+      c.stroke();
     }
     //clear top lines
-    clear(0,0,w,h/2);
+    c.rect(0,0,w,h/2);
+    c.fillStyle = "#000";
+    c.fill();
 
 
-	// __ draw gradient
+	// __ draw COLOR gradient
 	c.fillStyle = g;
 	c.fillRect(0, 0, w, h/2);
 
@@ -105,6 +113,7 @@ setInterval(function() {
 		    c.beginPath();
 		    c.moveTo(f[l].s, h/2);
 		    c.lineTo(f[l].t, 0);
+		    c.closePath();
 		    c.stroke();
 		    f[l].l--;
 		} else {
@@ -124,6 +133,7 @@ setInterval(function() {
 	for (i = 0; i<m.length; i++) {
 	    c.lineTo(i * w / (m.length-1), h/4+h/2-m[i]);
 	}
+    c.closePath();
     c.fill();
 
     //draw TRIANGLE
@@ -135,8 +145,10 @@ setInterval(function() {
     c.lineTo(w/2, h/2+127.49);//255*Math.sin(Math.PI/6) );
     c.lineTo(w/2-/*255*Math.cos(Math.PI/6)*/220.84, h/2-255 );
     c.lineTo(w/2+/*255*Math.cos(Math.PI/6)*/220.84, h/2-255 );
+    c.closePath();
     c.fill();
     c.stroke();
+
 
 	u+=0.5;
 }, 50);
