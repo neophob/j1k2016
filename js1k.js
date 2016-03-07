@@ -41,11 +41,11 @@ setInterval(function() {
 		if (Math.random() < 0.05) {
 			c.strokeStyle = "rgba(255, 64, 255, 0.65)";
 			c.lineWidth = 4;
-		}	
+		}
 	    c.beginPath();
-	    c.moveTo(x1, y1); 
+	    c.moveTo(x1, y1);
 	    c.lineTo(x2, y2);
-	    c.closePath();  
+	    c.closePath();
 	    c.stroke();
 	}
 
@@ -53,7 +53,7 @@ setInterval(function() {
 		c.rect(x1,y1,x2,y2);
 		c.fillStyle = "#000";
 		c.fill();
-	}    
+	}
 
 	clear(0,0,w,h);
 
@@ -66,7 +66,7 @@ setInterval(function() {
     for (l = 0; l <20; l++) {
 	    y = l * 179.75882 / (8 + l * -0.43837) + h/2;
     	drawLine(0, y, w, y);
-    }	
+    }
     //clear top lines
     clear(0,0,w,h/2);
 
@@ -75,41 +75,48 @@ setInterval(function() {
 	c.fillStyle = g;
 	c.fillRect(0, 0, w, h/2);
 
+  // __ draw PLANET
+  c.fillStyle = "rgba(255, 255, 255, 0.1)";
+  c.beginPath();
+  c.arc(100, -h/8, h/2, 0, 2*Math.PI);
+  c.fill();
+
+
 	//__ draw stars
 	c.fillStyle = "rgba(255, 255, 255, 0.5)";
-	for (l = 0; l<4; l++) {		
-		for (z = 0; z<64*4; z++) {
+	for (l = 0; l<4; l++) {
+		for (z = 0; z<64*2; z++) {
 			if (!s[l][z]) {
-				s[l][z] = [Math.random() * w, Math.random() * h, 1 + Math.random() * 1, 1 + Math.random() * 1];
+				s[l][z] = [Math.random() * w, Math.random() * h/2, 1 + Math.random() * 2, 1 + Math.random() * 2];
 			} else {
 				s[l][z][0] += l*0.1;
 			}
 			c.fillRect(s[l][z][0], s[l][z][1], s[l][z][2], s[l][z][3]);
 			if (s[l][z][0] > w) {
-				s[l][z] = [0, Math.random() * h, , 1 + Math.random() * 1, 1 + Math.random() * 1];
+				s[l][z] = [0, Math.random() * h/2, , 1 + Math.random() * 2, 1 + Math.random() * 2];
 			}
 		}
 	}
 
 	// __ draw CANONS
-	for (l = 0; l<3; l++) {		
+	for (l = 0; l<3; l++) {
 		if (f[l].l > 0) {
 			c.strokeStyle = "rgba(255, 0, 255, 0.3)";
 			c.lineWidth = 6;
 		    c.beginPath();
 		    c.moveTo(f[l].s, h/2);
 		    c.lineTo(f[l].t, 0);
-		    c.closePath();  
-		    c.stroke();	
-		    f[l].l--;	
+		    c.closePath();
+		    c.stroke();
+		    f[l].l--;
 		} else {
 			if (Math.random() < 0.1) {
-				f[l].s = Math.random() * w;
+				f[l].s = Math.random() * (w-250) + 125;
 				f[l].t = f[l].s + (Math.random() * 250) - 125;
 				f[l].l = 80;
-			}		
-		}	
-	} 
+			}
+		}
+	}
 
 	//__ draw mountain
     c.lineWidth = 1;
@@ -119,7 +126,7 @@ setInterval(function() {
 	for (i = 0; i<m.length; i++) {
 	    c.lineTo(i * w / (m.length-1), h/4+h/2-m[i]);
 	}
-    c.closePath();  
+    c.closePath();
     c.fill();
 
     //draw TRIANGLE
@@ -131,9 +138,9 @@ setInterval(function() {
     c.lineTo(w/2, h/2+127.49);//255*Math.sin(Math.PI/6) );
     c.lineTo(w/2-/*255*Math.cos(Math.PI/6)*/220.84, h/2-255 );
     c.lineTo(w/2+/*255*Math.cos(Math.PI/6)*/220.84, h/2-255 );
-    c.closePath();  
+    c.closePath();
     c.fill();
-    c.stroke();		
+    c.stroke();
 
 
 	u+=0.5;
