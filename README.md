@@ -1,5 +1,6 @@
-# js2016
+# js2016 - lazer!
 
+compo entry for http://js1k.com/2016-elemental/
 
 ## hacks
 
