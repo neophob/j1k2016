@@ -59,7 +59,7 @@ setInterval(function() {
     }
     //horizontal lines
     for (l = 0; l <20; l++) {
-	    y = l * 179.76 / (8 + l * -0.44) + h/2;
+	    y = l * 179.8 / (8 + l * -0.44) + h/2;
 //    	drawLine(0, y, w, y);
       c.strokeStyle = "rgba(255, 0, 255, 0.5)";
       c.lineWidth = 2;
@@ -143,8 +143,8 @@ setInterval(function() {
 	c.strokeStyle = "#000";
 	c.lineWidth = 2;
   c.beginPath();
-  c.moveTo(w/2, h/2+127.5);//255*Math.sin(Math.PI/6) );
-  c.lineTo(w/2, h/2+127.5);//255*Math.sin(Math.PI/6) );
+  c.moveTo(w/2, h/2+127);//255*Math.sin(Math.PI/6) );
+  c.lineTo(w/2, h/2+127);//255*Math.sin(Math.PI/6) );
   c.lineTo(w/2-/*255*Math.cos(Math.PI/6)*/220.8, h/2-255 );
   c.lineTo(w/2+/*255*Math.cos(Math.PI/6)*/220.8, h/2-255 );
   c.closePath();
