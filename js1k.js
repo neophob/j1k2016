@@ -12,12 +12,12 @@ g.addColorStop(1, "rgba(0, 0, 0, 0.5)");
 // see http://victorblog.com/html5-canvas-gradient-creator/
 
 // # init STARS
-s = [4]
+s = [4];
 s[0] = [];s[1] = [];s[2] = [];s[3] = [];
 
 // # init CANONS
-f = [3]
-f[0] = {}; f[1] = {}; f[2] = {}
+f = [3];
+f[0] = {}; f[1] = {}; f[2] = {};
 
 // # init MOUNTAINS, ripped from http://codepen.io/loktar00/pen/uEJKl/?editors=0010
 m = [];
@@ -102,7 +102,7 @@ setInterval(function() {
 			}
 			c.fillRect(s[l][z][0], s[l][z][1], s[l][z][2], s[l][z][3]);
 			if (s[l][z][0] > w) {
-				s[l][z] = [0, Math.random() * h/2, , 1 + Math.random() * 2, 1 + Math.random() * 2];
+				s[l][z] = [0, Math.random() * h/2, 1 + Math.random() * 2, 1 + Math.random() * 2];
 			}
 		}
 	}
