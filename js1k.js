@@ -45,7 +45,6 @@ setInterval(function() {
 	    c.beginPath();
 	    c.moveTo(x1, y1);
 	    c.lineTo(x2, y2);
-	    c.closePath();
 	    c.stroke();
 	}
 
@@ -106,7 +105,6 @@ setInterval(function() {
 		    c.beginPath();
 		    c.moveTo(f[l].s, h/2);
 		    c.lineTo(f[l].t, 0);
-		    c.closePath();
 		    c.stroke();
 		    f[l].l--;
 		} else {
@@ -126,7 +124,6 @@ setInterval(function() {
 	for (i = 0; i<m.length; i++) {
 	    c.lineTo(i * w / (m.length-1), h/4+h/2-m[i]);
 	}
-    c.closePath();
     c.fill();
 
     //draw TRIANGLE
@@ -138,10 +135,8 @@ setInterval(function() {
     c.lineTo(w/2, h/2+127.49);//255*Math.sin(Math.PI/6) );
     c.lineTo(w/2-/*255*Math.cos(Math.PI/6)*/220.84, h/2-255 );
     c.lineTo(w/2+/*255*Math.cos(Math.PI/6)*/220.84, h/2-255 );
-    c.closePath();
     c.fill();
     c.stroke();
-
 
 	u+=0.5;
 }, 50);
