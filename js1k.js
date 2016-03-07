@@ -40,6 +40,7 @@ setInterval(function() {
   c.fillStyle = "#000";
   c.fill();
 
+
 	// __ draw GRID
     //vertical lines
     for (l = -50; l < 50; l++) {
@@ -47,7 +48,7 @@ setInterval(function() {
       c.strokeStyle = "rgba(255, 0, 255, 0.5)";
       c.lineWidth = 2;
   		if (Math.random() < 0.05) {
-  			c.strokeStyle = "rgba(255, 64, 255, 0.65)";
+  			c.strokeStyle = "rgba(255, 64, 255, 0.7)";
   			c.lineWidth = 4;
   		}
 	    c.beginPath();
@@ -63,7 +64,7 @@ setInterval(function() {
       c.strokeStyle = "rgba(255, 0, 255, 0.5)";
       c.lineWidth = 2;
       if (Math.random() < 0.05) {
-        c.strokeStyle = "rgba(255, 64, 255, 0.65)";
+        c.strokeStyle = "rgba(255, 64, 255, 0.7)";
         c.lineWidth = 4;
       }
       c.beginPath();
@@ -72,6 +73,7 @@ setInterval(function() {
       c.closePath();
       c.stroke();
     }
+
     //clear top lines
     c.rect(0,0,w,h/2);
     c.fillStyle = "#000";
@@ -92,7 +94,7 @@ setInterval(function() {
 	//__ draw stars
 	c.fillStyle = "rgba(255, 255, 255, 0.5)";
 	for (l = 0; l<4; l++) {
-		for (z = 0; z<64*2; z++) {
+		for (z = 0; z<99; z++) {
 			if (!s[l][z]) {
 				s[l][z] = [Math.random() * w, Math.random() * h/2, 1 + Math.random() * 2, 1 + Math.random() * 2];
 			} else {
@@ -105,17 +107,17 @@ setInterval(function() {
 		}
 	}
 
-	// __ draw CANONS
+	// __ draw CANONS, s: startpos, t: targetpos, l:lifetime
 	for (l = 0; l<3; l++) {
 		if (f[l].l > 0) {
 			c.strokeStyle = "rgba(255, 0, 255, 0.3)";
 			c.lineWidth = 6;
-		    c.beginPath();
-		    c.moveTo(f[l].s, h/2);
-		    c.lineTo(f[l].t, 0);
-		    c.closePath();
-		    c.stroke();
-		    f[l].l--;
+	    c.beginPath();
+	    c.moveTo(f[l].s, h/2);
+	    c.lineTo(f[l].t, 0);
+	    c.closePath();
+	    c.stroke();
+	    f[l].l--;
 		} else {
 			if (Math.random() < 0.1) {
 				f[l].s = Math.random() * (w-250) + 125;
@@ -126,29 +128,28 @@ setInterval(function() {
 	}
 
 	//__ draw mountain
-    c.lineWidth = 1;
+  c.lineWidth = 1;
 	c.fillStyle = "#000";
-    c.beginPath();
-    c.moveTo(0, h/4+m[0]);
+  c.beginPath();
+  c.moveTo(0, h/4+m[0]);
 	for (i = 0; i<m.length; i++) {
 	    c.lineTo(i * w / (m.length-1), h/4+h/2-m[i]);
 	}
-    c.closePath();
-    c.fill();
+  c.closePath();
+  c.fill();
 
     //draw TRIANGLE
 	c.fillStyle = "rgba(255, 0, 255, 0.3)";
 	c.strokeStyle = "#000";
 	c.lineWidth = 2;
-    c.beginPath();
-    c.moveTo(w/2, h/2+127.49);//255*Math.sin(Math.PI/6) );
-    c.lineTo(w/2, h/2+127.49);//255*Math.sin(Math.PI/6) );
-    c.lineTo(w/2-/*255*Math.cos(Math.PI/6)*/220.84, h/2-255 );
-    c.lineTo(w/2+/*255*Math.cos(Math.PI/6)*/220.84, h/2-255 );
-    c.closePath();
-    c.fill();
-    c.stroke();
-
+  c.beginPath();
+  c.moveTo(w/2, h/2+127.5);//255*Math.sin(Math.PI/6) );
+  c.lineTo(w/2, h/2+127.5);//255*Math.sin(Math.PI/6) );
+  c.lineTo(w/2-/*255*Math.cos(Math.PI/6)*/220.8, h/2-255 );
+  c.lineTo(w/2+/*255*Math.cos(Math.PI/6)*/220.8, h/2-255 );
+  c.closePath();
+  c.fill();
+  c.stroke();
 
 	u+=0.5;
 }, 50);
