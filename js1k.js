@@ -19,14 +19,13 @@ f = [ {}, {}, {} ];
 
 // # init MOUNTAINS, ripped from http://codepen.io/loktar00/pen/uEJKl/?editors=0010
 m = [];
-p = Math.pow(2, Math.ceil(Math.log(w) / (Math.log(2))));
 // set the start height and end height for the terrain
-m[p] = m[0] = h/4;
+m[1024] = m[0] = h/4;
 // create the rest of the points
 d = h/4;
-for (l = 1; l < p; l *= 2) {
-  for (z = (p / l) / 2; z < p; z += p / l) {
-      m[z] = ((m[z - (p / l) / 2] + m[z + (p / l) / 2]) / 2) + (Math.random() * -d + d);
+for (l = 1; l < 1024; l *= 2) {
+  for (z = (1024 / l) / 2; z < 1024; z += 1024 / l) {
+      m[z] = ((m[z - (1024 / l) / 2] + m[z + (1024 / l) / 2]) / 2) + (Math.random() * -d + d);
   }
   d *= 0.45;
 }
