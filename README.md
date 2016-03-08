@@ -1,6 +1,6 @@
 # js2016 - lazer!
 
-compo entry for http://js1k.com/2016-elemental/
+compo entry for http://js1k.com/2016-elemental/, demo url: http://js1k.com/2016-elemental/demo/2516
 
 ## hacks
 
