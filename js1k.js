@@ -37,7 +37,7 @@ setInterval(function() {
   c.fillStyle = "#000";
   c.fill();
 
-  i=8*Math.cos(u/188);
+  i=32*Math.cos(u/188);
 
 	// __ draw GRID
     //vertical lines
@@ -50,7 +50,7 @@ setInterval(function() {
   			c.lineWidth = 4;
   		}
 	    c.beginPath();
-	    c.moveTo(w/2, h/4+i*2);
+	    c.moveTo(w/2+i, h/4+i*2);
 	    c.lineTo(l*96 + u%96, h);
 	    c.closePath();
 	    c.stroke();
@@ -72,11 +72,10 @@ setInterval(function() {
       c.stroke();
     }
 
-    //clear top lines
-    c.rect(0,0,w,h/2);
-    c.fillStyle = "#000";
-    c.fill();
-
+  //clear top lines
+  c.rect(0,0,w,h/2);
+  c.fillStyle = "#000";
+  c.fill();
 
 	// __ draw COLOR gradient
 	c.fillStyle = g;
@@ -89,18 +88,17 @@ setInterval(function() {
   c.arc(w/1.2, h/3, 150+i, 0, 2*Math.PI);
   c.fill();
 
-
 	//__ draw stars
 	c.fillStyle = "rgba(255, 255, 255, 0.5)";
 	for (l = 0; l<500; l++) {
 		if (!s[l]) {
       //init new star, array value: xpos, ypos, xsize, ysize, speed
-			s[l] = [Math.random() * w, Math.random() * h/2, 1 + Math.random() * 2, 1 + Math.random() * 2, Math.random() * 0.4];
+			s[l] = [Math.random() * w, Math.random() * h , 1 + Math.random() * 2, 1 + Math.random() * 2, Math.random() * 0.4];
 		} else {
       //move  right
 			s[l][0] += s[l][4];
 		}
-		c.fillRect(s[l][0], s[l][1]+i, s[l][2], s[l][3]);
+		c.fillRect(s[l][0], (s[l][1]+i)%h/2, s[l][2], s[l][3]);
     s[l][0] %= w;
 	}
 
@@ -119,18 +117,17 @@ setInterval(function() {
       //reinit
 			f[l].s = Math.random() * (w-250) + 125;
 			f[l].t = f[l].s + (Math.random() * 250) - 125;
-			f[l].l = 60 + Math.random() * 30;
+			f[l].l = 50 + Math.random() * 40;
 		}
 	}
 
 	//__ draw mountain
   l=16*Math.cos(u/256);
-  //c.lineWidth = 2;
   c.fillStyle = "#000";
   c.beginPath();
-  c.moveTo(0, h/4+m[0]);
+  c.moveTo(0, h/2);
 	for (i = 0; i<m.length; i++) {
-	    c.lineTo(i * w / (m.length-1), h*0.75-m[i] - l);
+	    c.lineTo(i * w/(m.length-1), h*0.75-m[i] - l);
 	}
   c.lineTo(w, h/2);
   c.closePath();
@@ -142,7 +139,6 @@ setInterval(function() {
   c.strokeStyle = "#000";
   c.lineWidth = 2;
   c.beginPath();
-  c.moveTo(w/2, h/2+127-i);//255*Math.sin(Math.PI/6) );
   c.lineTo(w/2, h/2+127-i);//255*Math.sin(Math.PI/6) );
   c.lineTo(w/2-/*255*Math.cos(Math.PI/6)*/220.8-i, i+h/2-255 ); //top left
   c.lineTo(w/2+/*255*Math.cos(Math.PI/6)*/i+220.8, i+h/2-255 ); //top right
