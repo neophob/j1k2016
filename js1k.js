@@ -37,6 +37,8 @@ setInterval(function() {
   c.fillStyle = "#000";
   c.fill();
 
+  i=8*Math.cos(u/188);
+
 	// __ draw GRID
     //vertical lines
     for (l = -50; l < 50; l++) {
@@ -48,7 +50,7 @@ setInterval(function() {
   			c.lineWidth = 4;
   		}
 	    c.beginPath();
-	    c.moveTo(w/2, h/4);
+	    c.moveTo(w/2, h/4+i*2);
 	    c.lineTo(l*96 + u%96, h);
 	    c.closePath();
 	    c.stroke();
@@ -80,28 +82,26 @@ setInterval(function() {
 	c.fillStyle = g;
 	c.fillRect(0, 0, w, h/2);
 
-  // __ draw PLANET
-  i=8*Math.cos(u/188);
-  c.fillStyle = "rgba(255, 255, 255, 0.05)";
+  // __ draw PLANETS
+  c.fillStyle = "rgba(255, 255, 255, 0.06)";
   c.beginPath();
-  c.arc(100, -h/8, h/2, 0, 2*Math.PI);
+  c.arc(100, -h/8, h/2-i, 0, 2*Math.PI);
   c.arc(w/1.2, h/3, 150+i, 0, 2*Math.PI);
   c.fill();
 
 
 	//__ draw stars
 	c.fillStyle = "rgba(255, 255, 255, 0.5)";
-	for (i = 0; i<500; i++) {
-		if (!s[i]) {
-      //array value: xpos, ypos, xsize, ysize, speed
-			s[i] = [Math.random() * w, Math.random() * h/2, 1 + Math.random() * 2, 1 + Math.random() * 2, Math.random() * 0.4];
+	for (l = 0; l<500; l++) {
+		if (!s[l]) {
+      //init new star, array value: xpos, ypos, xsize, ysize, speed
+			s[l] = [Math.random() * w, Math.random() * h/2, 1 + Math.random() * 2, 1 + Math.random() * 2, Math.random() * 0.4];
 		} else {
-			s[i][0] += s[i][4];
+      //move  right
+			s[l][0] += s[l][4];
 		}
-		c.fillRect(s[i][0], s[i][1], s[i][2], s[i][3]);
-		if (s[i][0] > w) {
-      s[i][0] = 0;
-		}
+		c.fillRect(s[l][0], s[l][1]+i, s[l][2], s[l][3]);
+    s[l][0] %= w;
 	}
 
 	// __ draw CANONS, s: startpos, t: targetpos, l:lifetime
@@ -130,7 +130,7 @@ setInterval(function() {
   c.beginPath();
   c.moveTo(0, h/4+m[0]);
 	for (i = 0; i<m.length; i++) {
-	    c.lineTo(i * w / (m.length-1), h/4+h/2-m[i] - l);
+	    c.lineTo(i * w / (m.length-1), h*0.75-m[i] - l);
 	}
   c.lineTo(w, h/2);
   c.closePath();
