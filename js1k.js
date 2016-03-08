@@ -82,6 +82,8 @@ setInterval(function() {
 	c.fillRect(0, 0, w, h/2);
 
   // __ draw PLANETS
+  i=8*Math.cos(u/222);
+
   c.fillStyle = "rgba(255, 255, 255, 0.06)";
   c.beginPath();
   c.arc(100, -h/8, h/2-i, 0, 2*Math.PI);
@@ -127,7 +129,7 @@ setInterval(function() {
   c.beginPath();
   c.moveTo(0, h/2);
 	for (i = 0; i<m.length; i++) {
-	    c.lineTo(i * w/(m.length-1), h*0.75-m[i] - l);
+	    c.lineTo(i * w/(m.length-1), h*0.7 - m[i] - l);
 	}
   c.lineTo(w, h/2);
   c.closePath();
