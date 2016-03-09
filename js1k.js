@@ -3,7 +3,7 @@ h = a.height;
 u=0;
 
 // # init gradient
-g=c.createRadialGradient(w/2, h/1.3, h/3.0, w/2, h/1.3, h/1.3);
+g=c.createRadialGradient(w/2, h/1.3, h/3, w/2, h/1.3, h/1.3);
 g.addColorStop(0, "#777");
 g.addColorStop(0.3, "#707");
 g.addColorStop(0.8, "#007");
@@ -133,4 +133,4 @@ setInterval(function() {
   c.fill();
 
 	u+=2;
-}, 20);
+}, 1);
