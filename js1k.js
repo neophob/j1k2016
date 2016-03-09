@@ -125,12 +125,12 @@ setInterval(function() {
   c.lineWidth = 2;
   c.fillStyle = "rgba(255, 0, 255, 0.3)";
   c.beginPath();
-  c.lineTo(w/2, h/2+127-i);//255*Math.sin(Math.PI/6) );
-  c.lineTo(w/2-220.8-i, i+h/2-255 ); //top left, 255*Math.cos(Math.PI/6)
-  c.lineTo(w/2+220.8+i, i+h/2-255 ); //top right 255*Math.cos(Math.PI/6)
+  c.lineTo(w/2, 2*h/3-i);
+  c.lineTo(w/2-i+0.87*-h/3, i+ h/6 ); //top left, Math.cos(Math.PI/6) = 0.8660254037844387
+  c.lineTo(w/2+i+0.87* h/3, i+ h/6 ); //top right Math.cos(Math.PI/6) = 0.8660254037844387
   c.closePath();
   c.stroke();
   c.fill();
 
 	u+=2;
-}, 25);
+}, 20);
