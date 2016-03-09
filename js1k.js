@@ -4,9 +4,9 @@ u=0;
 
 // # init gradient
 g=c.createRadialGradient(w/2, h/1.3, h/3.0, w/2, h/1.3, h/1.3);
-g.addColorStop(0, "#7f7f7f");
-g.addColorStop(0.3, "#7f007f");
-g.addColorStop(0.8, "#00007f");
+g.addColorStop(0, "#777");
+g.addColorStop(0.3, "#707");
+g.addColorStop(0.8, "#007");
 g.addColorStop(1, "#000");
 // # init STARS
 s = [];
