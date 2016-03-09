@@ -4,10 +4,10 @@ u=0;
 
 // # init gradient
 g=c.createRadialGradient(w/2, h/1.3, h/3.0, w/2, h/1.3, h/1.3);
-g.addColorStop(0, "rgba(255, 255, 255, 0.5)");
-g.addColorStop(0.3, "rgba(255, 0, 255, 0.5)");
-g.addColorStop(0.8, "rgba(0, 0, 255, 0.5)");
-g.addColorStop(1, "rgba(0, 0, 0, 0.5)");
+g.addColorStop(0, "#7f7f7f");
+g.addColorStop(0.3, "#7f007f");
+g.addColorStop(0.8, "#00007f");
+g.addColorStop(1, "#000");
 
 // see http://victorblog.com/html5-canvas-gradient-creator/
 
@@ -15,14 +15,14 @@ g.addColorStop(1, "rgba(0, 0, 0, 0.5)");
 s = [];
 
 // # init CANONS
-f = [ {}, {}, {} ];
+f = [];
 
 // # init MOUNTAINS, ripped from http://codepen.io/loktar00/pen/uEJKl/?editors=0010
 m = [];
+
 // set the start height and end height for the terrain
-m[1024] = m[0] = h/4;
+d = m[1024] = m[0] = h/4;
 // create the rest of the points
-d = h/4;
 for (l = 1; l < 1024; l *= 2) {
   for (z = (1024 / l) / 2; z < 1024; z += 1024 / l) {
       m[z] = ((m[z - (1024 / l) / 2] + m[z + (1024 / l) / 2]) / 2) + (Math.random() * -d + d);
@@ -40,44 +40,43 @@ setInterval(function() {
   i=32*Math.cos(u/188);
 
 	// __ draw GRID
-    //vertical lines
-    for (l = -50; l < 50; l++) {
-//    	drawLine(w/2, h/4, l*96 + u%96, h);
-      c.strokeStyle = "rgba(255, 0, 255, 0.5)";
-      c.lineWidth = 2;
-  		if (Math.random() < 0.05) {
-  			c.strokeStyle = "rgba(255, 64, 255, 0.7)";
-  			c.lineWidth = 4;
-  		}
-	    c.beginPath();
-	    c.moveTo(w/2+i, h/4+i*2);
-	    c.lineTo(l*96 + u%96, h);
-	    c.closePath();
-	    c.stroke();
-    }
-    //horizontal lines
-    for (l = 0; l <20; l++) {
-	    y = l * 180 / (8 + l * -0.4) + h/2;
-//    	drawLine(0, y, w, y);
-      c.strokeStyle = "rgba(255, 0, 255, 0.5)";
-      c.lineWidth = 2;
-      if (Math.random() < 0.05) {
-        c.strokeStyle = "rgba(255, 64, 255, 0.7)";
-        c.lineWidth = 4;
-      }
-      c.beginPath();
-      c.moveTo(0, y);
-      c.lineTo(w, y);
-      c.closePath();
-      c.stroke();
-    }
+  c.strokeStyle = "rgba(255, 0, 255, 0.5)";
 
-  //clear top lines
-  c.rect(0,0,w,h/2);
-  c.fillStyle = "#000";
-  c.fill();
+  //horizontal lines
+  for (l = 0; l <20; l++) {
+    c.lineWidth = 2;
+    y = l * 180 / (8 + l * -0.4) + h/2;
+/*    if (Math.random() < 0.1) {
+      //c.strokeStyle = "rgba(255, 64, 255, 0.7)";
+      c.lineWidth = 4;
+    }*/
+    //draw blue bg
+    c.fillStyle = "rgba(0, 0, 96, 0.1)";
+    c.rect(0, y-20, w, y);
+    c.fill();
 
-	// __ draw COLOR gradient
+    c.beginPath();
+    c.moveTo(0, y);
+    c.lineTo(w, y);
+    c.closePath();
+    c.stroke();
+  }
+  //vertical lines
+  for (l = -50; l < 50; l++) {
+    //c.strokeStyle = "rgba(255, 0, 255, 0.5)";
+    c.lineWidth = 2;
+		if (Math.random() < 0.05) {
+			//c.strokeStyle = "rgba(255, 64, 255, 0.7)";
+			c.lineWidth = 4;
+		}
+    c.beginPath();
+    c.moveTo(w/2+i, h/4+i*2);
+    c.lineTo(l*96 + u%96, h);
+    c.closePath();
+    c.stroke();
+  }
+
+  // __ draw COLOR gradient
 	c.fillStyle = g;
 	c.fillRect(0, 0, w, h/2);
 
@@ -96,19 +95,17 @@ setInterval(function() {
 		if (!s[l]) {
       //init new star, array value: xpos, ypos, xsize, ysize, speed
 			s[l] = [Math.random() * w, Math.random() * h , 1 + Math.random() * 2, 1 + Math.random() * 2, Math.random() * 0.4];
-		} else {
-      //move  right
-			s[l][0] += s[l][4];
-		}
-		c.fillRect(s[l][0], (s[l][1]+i)%h/2, s[l][2], s[l][3]);
+    }
+    s[l][0] += s[l][4];
+    c.fillRect(s[l][0], (s[l][1]+i)%h/2, s[l][2], s[l][3]);
     s[l][0] %= w;
 	}
 
 	// __ draw CANONS, s: startpos, t: targetpos, l:lifetime
-	for (l = 0; l<3; l++) {
-		if (f[l].l > 0) {
-			c.strokeStyle = "rgba(255, 0, 255, 0.3)";
-			c.lineWidth = 8;
+  c.strokeStyle = "rgba(255, 0, 255, 0.3)";
+	for (l = 0; l<4; l++) {
+		if (f[l] && f[l].l > 0) {
+			c.lineWidth = 6;
 	    c.beginPath();
 	    c.moveTo(f[l].s, h/2);
 	    c.lineTo(f[l].t, 0);
@@ -117,6 +114,7 @@ setInterval(function() {
 	    f[l].l--;
 		} else if (Math.random() < 0.1) {
       //reinit
+      f[l] = {};
 			f[l].s = Math.random() * (w-250) + 125;
 			f[l].t = f[l].s + (Math.random() * 250) - 125;
 			f[l].l = 50 + Math.random() * 40;
