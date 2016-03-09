@@ -108,7 +108,7 @@ setInterval(function() {
 	for (l = 0; l<3; l++) {
 		if (f[l].l > 0) {
 			c.strokeStyle = "rgba(255, 0, 255, 0.3)";
-			c.lineWidth = 6;
+			c.lineWidth = 8;
 	    c.beginPath();
 	    c.moveTo(f[l].s, h/2);
 	    c.lineTo(f[l].t, 0);
@@ -128,8 +128,8 @@ setInterval(function() {
   c.fillStyle = "#000";
   c.beginPath();
   c.moveTo(0, h/2);
-	for (i = 0; i<m.length; i++) {
-	    c.lineTo(i * w/(m.length-1), h*0.7 - m[i] - l);
+	for (i = 0; i<1024; i++) {
+	    c.lineTo(i * w/(1023), h*0.7 - m[i] - l);
 	}
   c.lineTo(w, h/2);
   c.closePath();
