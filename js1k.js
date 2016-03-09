@@ -75,12 +75,12 @@ setInterval(function() {
   c.fillStyle = "rgba(255, 255, 255, 0.06)";
   c.beginPath();
   c.arc(100, -h/8, h/2-i, 0, 2*Math.PI);
-  c.arc(w/1.1, h/4, h/5+i, 0, 2*Math.PI);
+  c.arc(w, h/4, h/5+i, 0, 2*Math.PI);
   c.fill();
 
 	//__ draw stars
-	c.fillStyle = "rgba(255, 255, 255, 0.3)";
 	for (l = 0; l<1200; l++) {
+    c.fillStyle = "rgba(255, 255, 255, 0.3)";
 		if (!s[l]) {
       //init new star, array value: xpos, ypos, xsize, ysize, speed
 			s[l] = [Math.random() * w, Math.random() * h , 1 + Math.random() * 2, 1 + Math.random() * 2, Math.random() * 0.4];
@@ -95,7 +95,7 @@ setInterval(function() {
 	for (l = 0; l<1400; l++) {
     if (l==3) c.strokeStyle = "rgba(255, 0, 255, 0.006)";
 		if (f[l] && f[l].l > 0) {
-			c.lineWidth = 6;
+      c.lineWidth = 6;
 	    c.beginPath();
 	    c.moveTo(f[l].s, h/2);
 	    c.lineTo(f[l].t, 0);
@@ -106,7 +106,7 @@ setInterval(function() {
       //reinit
       f[l] = {};
 			f[l].s = Math.random() * w;
-			f[l].t = f[l].s + (Math.random() * 500) - 250;
+			f[l].t = f[l].s + (Math.random() * h/2) - h/4;
 			f[l].l = 30 + Math.random() * 60;
 		}
 	}
@@ -125,9 +125,9 @@ setInterval(function() {
 
   //draw TRIANGLE
   i=20*Math.cos(u/128);
-  c.fillStyle = "rgba(255, 0, 255, 0.3)";
   c.strokeStyle = "#000";
   c.lineWidth = 2;
+  c.fillStyle = "rgba(255, 0, 255, 0.3)";
   c.beginPath();
   c.lineTo(w/2, h/2+127-i);//255*Math.sin(Math.PI/6) );
   c.lineTo(w/2-/*255*Math.cos(Math.PI/6)*/220.8-i, i+h/2-255 ); //top left
