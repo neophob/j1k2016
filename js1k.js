@@ -136,4 +136,4 @@ setInterval(function() {
   c.fill();
 
 	u+=2;
-}, 1);
+}, 25);

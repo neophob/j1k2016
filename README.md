@@ -3,7 +3,7 @@
 Compo entry for http://js1k.com/2016-elemental/, demo url: http://js1k.com/2016-elemental/demo/2516
 
 Random Notes:
-- Regpack reduce the framerate from 45fps to 23fps (ff45)
+- Regpack reduce the framerate from 45fps to 23fps (ff45) [only if "withMath" option is enabled - this saves 5 bytes]
 - Canons alpha values looks different in ff45 and chrome49 ("rgba(255, 0, 255, 0.006)")
 - Mobile browser also looks different (planet alpha value and canon alpha value)
 - Optimized for Chrome 49/Safari 9 on desktop - but works on other browsers too
@@ -14,14 +14,14 @@ open node_modules/regpack/regPack.js and change those settings:
 
 ```
 var default_options = {
-  withMath : true,
+  withMath : false,
   hash2DContext : true,
-  hashWebGLContext : false,
-  hashAudioContext : false,
+  hashWebGLContext : true,
+  hashAudioContext : true,
   contextVariableName : 'c',
   contextType : parseInt(0),
   reassignVars : true,
-  varsNotReassigned : ['a', 'b', 'c'],
+  varsNotReassigned : ['a', 'b', 'c', 'i', 'l', 's', 'm', 'f'],
   crushGainFactor : parseFloat(0),
   crushLengthFactor : parseFloat(0),
   crushCopiesFactor : parseFloat(0),
