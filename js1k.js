@@ -8,15 +8,10 @@ g.addColorStop(0, "#7f7f7f");
 g.addColorStop(0.3, "#7f007f");
 g.addColorStop(0.8, "#00007f");
 g.addColorStop(1, "#000");
-
-// see http://victorblog.com/html5-canvas-gradient-creator/
-
 // # init STARS
 s = [];
-
 // # init CANONS
 f = [];
-
 // # init MOUNTAINS, ripped from http://codepen.io/loktar00/pen/uEJKl/?editors=0010
 m = [];
 
@@ -41,17 +36,13 @@ setInterval(function() {
 
 	// __ draw GRID
   c.strokeStyle = "rgba(255, 0, 255, 0.5)";
+  c.fillStyle = "rgba(0, 0, 96, 0.1)";
 
   //horizontal lines
   for (l = 0; l <20; l++) {
     c.lineWidth = 2;
     y = l * 180 / (8 + l * -0.4) + h/2;
-/*    if (Math.random() < 0.1) {
-      //c.strokeStyle = "rgba(255, 64, 255, 0.7)";
-      c.lineWidth = 4;
-    }*/
     //draw blue bg
-    c.fillStyle = "rgba(0, 0, 96, 0.1)";
     c.rect(0, y-20, w, y);
     c.fill();
 
@@ -63,10 +54,8 @@ setInterval(function() {
   }
   //vertical lines
   for (l = -50; l < 50; l++) {
-    //c.strokeStyle = "rgba(255, 0, 255, 0.5)";
     c.lineWidth = 2;
 		if (Math.random() < 0.05) {
-			//c.strokeStyle = "rgba(255, 64, 255, 0.7)";
 			c.lineWidth = 4;
 		}
     c.beginPath();
@@ -90,8 +79,8 @@ setInterval(function() {
   c.fill();
 
 	//__ draw stars
-	c.fillStyle = "rgba(255, 255, 255, 0.5)";
-	for (l = 0; l<500; l++) {
+	c.fillStyle = "rgba(255, 255, 255, 0.3)";
+	for (l = 0; l<1200; l++) {
 		if (!s[l]) {
       //init new star, array value: xpos, ypos, xsize, ysize, speed
 			s[l] = [Math.random() * w, Math.random() * h , 1 + Math.random() * 2, 1 + Math.random() * 2, Math.random() * 0.4];
@@ -103,7 +92,8 @@ setInterval(function() {
 
 	// __ draw CANONS, s: startpos, t: targetpos, l:lifetime
   c.strokeStyle = "rgba(255, 0, 255, 0.3)";
-	for (l = 0; l<4; l++) {
+	for (l = 0; l<1200; l++) {
+    if (l==3) c.strokeStyle = "rgba(255, 0, 255, 0.008)";
 		if (f[l] && f[l].l > 0) {
 			c.lineWidth = 6;
 	    c.beginPath();
@@ -115,9 +105,9 @@ setInterval(function() {
 		} else if (Math.random() < 0.1) {
       //reinit
       f[l] = {};
-			f[l].s = Math.random() * (w-250) + 125;
-			f[l].t = f[l].s + (Math.random() * 250) - 125;
-			f[l].l = 50 + Math.random() * 40;
+			f[l].s = Math.random() * w;
+			f[l].t = f[l].s + (Math.random() * 500) - 250;
+			f[l].l = 30 + Math.random() * 60;
 		}
 	}
 
