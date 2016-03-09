@@ -70,7 +70,7 @@ setInterval(function() {
   // __ draw PLANETS
   i=8*Math.cos(u/222);
 
-  c.fillStyle = "rgba(255, 255, 255, 0.06)";
+  c.fillStyle = "rgba(255, 255, 255, 0.05)";
   c.beginPath();
   c.arc(100, -h/8, h/2-i, 0, 2*Math.PI);
   c.arc(w, h/4, h/5+i, 0, 2*Math.PI);
@@ -78,7 +78,7 @@ setInterval(function() {
 
 	//__ draw stars
 	for (l = 0; l<1200; l++) {
-    c.fillStyle = "rgba(255, 255, 255, 0.3)";
+    c.fillStyle = "rgba(255, 255, 255, 0.25)";
 		if (!s[l]) {
       //init new star, array value: xpos, ypos, xsize, ysize, speed
 			s[l] = [Math.random() * w, Math.random() * h , 1 + Math.random() * 2, 1 + Math.random() * 2, Math.random() * 0.4];
@@ -91,7 +91,7 @@ setInterval(function() {
 	// __ draw CANONS, s: startpos, t: targetpos, l:lifetime
   c.strokeStyle = "rgba(255, 0, 255, 0.3)";
   c.lineWidth = 6;
-	for (l = 0; l<1400; l++) {
+	for (l = 0; l<1200; l++) {
     if (l==3) c.strokeStyle = "rgba(255, 0, 255, 0.006)";
 		if (f[l] && f[l].l > 0) {
       c.beginPath();
@@ -103,8 +103,11 @@ setInterval(function() {
       //reinit
       f[l] = {};
 			f[l].s = Math.random() * w;
-			f[l].t = f[l].s + (Math.random() * h/2) - h/4;
-			f[l].l = 30 + Math.random() * 60;
+      f[l].t = f[l].s + (Math.random() * h/2) - h/4;
+      f[l].l = 30 + Math.random() * 60;
+      if (l<4) {
+  			f[l].l += 30;
+      }
 		}
 	}
 
