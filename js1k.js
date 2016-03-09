@@ -127,7 +127,7 @@ setInterval(function() {
   c.beginPath();
   c.lineTo(w/2, h/2+127-i);//255*Math.sin(Math.PI/6) );
   c.lineTo(w/2-220.8-i, i+h/2-255 ); //top left, 255*Math.cos(Math.PI/6)
-  c.lineTo(w/2+i+220.8, i+h/2-255 ); //top right 255*Math.cos(Math.PI/6)
+  c.lineTo(w/2+220.8+i, i+h/2-255 ); //top right 255*Math.cos(Math.PI/6)
   c.closePath();
   c.stroke();
   c.fill();
