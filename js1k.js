@@ -49,7 +49,6 @@ setInterval(function() {
     c.beginPath();
     c.moveTo(0, y);
     c.lineTo(w, y);
-    c.closePath();
     c.stroke();
   }
   //vertical lines
@@ -61,7 +60,6 @@ setInterval(function() {
     c.beginPath();
     c.moveTo(w/2+i, h/4+i*2);
     c.lineTo(l*96 + u%96, h);
-    c.closePath();
     c.stroke();
   }
 
@@ -92,15 +90,14 @@ setInterval(function() {
 
 	// __ draw CANONS, s: startpos, t: targetpos, l:lifetime
   c.strokeStyle = "rgba(255, 0, 255, 0.3)";
+  c.lineWidth = 6;
 	for (l = 0; l<1400; l++) {
     if (l==3) c.strokeStyle = "rgba(255, 0, 255, 0.006)";
 		if (f[l] && f[l].l > 0) {
-      c.lineWidth = 6;
-	    c.beginPath();
+      c.beginPath();
 	    c.moveTo(f[l].s, h/2);
 	    c.lineTo(f[l].t, 0);
-	    c.closePath();
-	    c.stroke();
+      c.stroke();
 	    f[l].l--;
 		} else if (Math.random() < 0.1) {
       //reinit
@@ -120,7 +117,6 @@ setInterval(function() {
 	    c.lineTo(i * w/(1023), h*0.7 - m[i] - l);
 	}
   c.lineTo(w, h/2);
-  c.closePath();
   c.fill();
 
   //draw TRIANGLE
@@ -130,11 +126,11 @@ setInterval(function() {
   c.fillStyle = "rgba(255, 0, 255, 0.3)";
   c.beginPath();
   c.lineTo(w/2, h/2+127-i);//255*Math.sin(Math.PI/6) );
-  c.lineTo(w/2-/*255*Math.cos(Math.PI/6)*/220.8-i, i+h/2-255 ); //top left
-  c.lineTo(w/2+/*255*Math.cos(Math.PI/6)*/i+220.8, i+h/2-255 ); //top right
+  c.lineTo(w/2-220.8-i, i+h/2-255 ); //top left, 255*Math.cos(Math.PI/6)
+  c.lineTo(w/2+i+220.8, i+h/2-255 ); //top right 255*Math.cos(Math.PI/6)
   c.closePath();
   c.stroke();
   c.fill();
 
 	u+=2;
-}, 50);
+}, 25);
