@@ -86,7 +86,7 @@ setInterval(function() {
   c.fillStyle = "rgba(255, 255, 255, 0.06)";
   c.beginPath();
   c.arc(100, -h/8, h/2-i, 0, 2*Math.PI);
-  c.arc(w/1.2, h/3, 150+i, 0, 2*Math.PI);
+  c.arc(w/1.1, h/4, h/5+i, 0, 2*Math.PI);
   c.fill();
 
 	//__ draw stars
