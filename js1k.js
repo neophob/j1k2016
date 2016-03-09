@@ -92,8 +92,8 @@ setInterval(function() {
 
 	// __ draw CANONS, s: startpos, t: targetpos, l:lifetime
   c.strokeStyle = "rgba(255, 0, 255, 0.3)";
-	for (l = 0; l<1200; l++) {
-    if (l==3) c.strokeStyle = "rgba(255, 0, 255, 0.008)";
+	for (l = 0; l<1400; l++) {
+    if (l==3) c.strokeStyle = "rgba(255, 0, 255, 0.006)";
 		if (f[l] && f[l].l > 0) {
 			c.lineWidth = 6;
 	    c.beginPath();
