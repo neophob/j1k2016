@@ -81,9 +81,8 @@ setInterval(function() {
       //init new star, array value: xpos, ypos, xsize, ysize, speed
 			s[l] = [Math.random() * w, Math.random() * h , 1 + Math.random() * 2, 1 + Math.random() * 2, Math.random() * 0.4];
     }
-    s[l][0] += s[l][4];
+    s[l][0] = (s[l][0] + s[l][4]) % w;
     c.fillRect(s[l][0], (s[l][1]+i)%h/2, s[l][2], s[l][3]);
-    s[l][0] %= w;
 	}
 
 	// __ draw CANONS, s: startpos, t: targetpos, l:lifetime
@@ -137,4 +136,4 @@ setInterval(function() {
   c.fill();
 
 	u+=2;
-}, 13);
+}, 7);
