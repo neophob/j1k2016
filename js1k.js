@@ -103,7 +103,7 @@ setInterval(function() {
       f[l].t = f[l].s + (Math.random() * h/2) - h/4;
       f[l].l = 30 + Math.random() * 60;
       if (l<4) {
-  			f[l].l += 30;
+  			f[l].l += 100;
       }
 		}
 	}
