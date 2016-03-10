@@ -70,8 +70,8 @@ setInterval(function() {
 
   c.fillStyle = "rgba(255,255,255,.05)";
   c.beginPath();
-  c.arc(100, -h/8, h/2-i, 0, 2*Math.PI);
-  c.arc(w, h/4, h/5+i, 0, 2*Math.PI);
+  c.arc(100, -h/8, h/2-i, 0, 7); //2*Math.PI was replaced with 7
+  c.arc(w, h/4, h/5+i, 0, 7);
   c.fill();
 
 	//__ draw stars
@@ -109,8 +109,8 @@ setInterval(function() {
 		}
 	}
 
-  c.shadowBlur = 64;
   c.shadowColor = "#707";
+  c.shadowBlur = 64;
 
 	//__ draw mountain
   l=16*Math.cos(u/256);
@@ -130,8 +130,8 @@ setInterval(function() {
   c.fillStyle = "rgba(255,0,255,.3)";
   c.beginPath();
   c.lineTo(w/2, 2*h/3-i);
-  c.lineTo(w/2-i+0.87*-h/3, i+ h/6 ); //top left, Math.cos(Math.PI/6) = 0.8660254037844387
-  c.lineTo(w/2+i+0.87* h/3, i+ h/6 ); //top right Math.cos(Math.PI/6) = 0.8660254037844387
+  c.lineTo(w/2-i+0.8*-h/3, i+ h/6); //top left, Math.cos(Math.PI/6) = 0.8660254037844387 -> 0.9
+  c.lineTo(w/2+i+0.8* h/3, i+ h/6); //top right Math.cos(Math.PI/6) = 0.8660254037844387 -> 0.9
   c.closePath();
   c.stroke();
   c.fill();
