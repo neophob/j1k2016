@@ -66,7 +66,7 @@ setInterval(function() {
 	c.fillRect(0, 0, w, h/2);
 
   // __ draw PLANETS
-  i=8*Math.cos(u/255);
+  i=8*Math.cos(u/180);
 
   c.fillStyle = "rgba(255,255,255,.06)";
   c.beginPath();
@@ -113,7 +113,7 @@ setInterval(function() {
   c.shadowBlur = 64;
 
 	//__ draw mountain
-  l=16*Math.cos(u/256);
+  l=16*Math.cos(u/255);
   c.fillStyle = "#000";
   c.beginPath();
   c.moveTo(0, h/2);
