@@ -66,9 +66,9 @@ setInterval(function() {
 	c.fillRect(0, 0, w, h/2);
 
   // __ draw PLANETS
-  i=8*Math.cos(u/222);
+  i=8*Math.cos(u/255);
 
-  c.fillStyle = "rgba(255,255,255,.05)";
+  c.fillStyle = "rgba(255,255,255,.06)";
   c.beginPath();
   c.arc(100, -h/8, h/2-i, 0, 7); //2*Math.PI was replaced with 7
   c.arc(w, h/4, h/5+i, 0, 7);
