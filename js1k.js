@@ -36,9 +36,9 @@ setInterval(function() {
 	// __ draw GRID
   c.strokeStyle = "rgba(255,0,255,.5)";
   c.fillStyle = "rgba(0,0,96,.1)";
+  c.lineWidth = 2;
   //horizontal lines
-  for (l = 0; l <20; l++) {
-    c.lineWidth = 2;
+  for (l = 0; l < 20; l++) {
     y = l * 180 / (8+ l * -0.4) + h/2;
     //draw blue bg
     c.rect(0, y-20, w, y);
