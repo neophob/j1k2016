@@ -26,8 +26,7 @@ for (l = 1; l < 1024; l *= 2) {
 setInterval(function() {
 
   // clear
-//  c.shadowBlur = 0;
-
+  c.shadowBlur = 0;
   c.rect(0,0,w,h);
   c.fillStyle = "#000";
   c.fill();
@@ -76,7 +75,7 @@ setInterval(function() {
   c.fill();
 
 	//__ draw stars
-	for (l = 0; l<1200; l++) {
+	for (l = 0; l<w; l++) {
     c.fillStyle = "rgba(255,255,255,.25)";
 		if (!s[l]) {
       //init new star, array value: xpos, ypos, xsize, ysize, speed
@@ -90,7 +89,7 @@ setInterval(function() {
 	// __ draw CANONS, s: startpos, t: targetpos, l:lifetime
   c.strokeStyle = "rgba(255,0,255,.3)";
   c.lineWidth = 6;
-	for (l = 0; l<1200; l++) {
+	for (l = 0; l<w; l++) {
     if (l==3) c.strokeStyle = "rgba(255,0,255,.006)";
 		if (f[l] && f[l].l > 0) {
       c.beginPath();
@@ -110,8 +109,8 @@ setInterval(function() {
 		}
 	}
 
-//  c.shadowBlur = 64;
-//  c.shadowColor = "#707";
+  c.shadowBlur = 64;
+  c.shadowColor = "#707";
 
 	//__ draw mountain
   l=16*Math.cos(u/256);
