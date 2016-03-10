@@ -17,8 +17,8 @@ m = [];
 d = m[1024] = m[0] = h/4; // set the start height and end height for the terrain
 // create the rest of the points
 for (l = 1; l < 1024; l *= 2) {
-  for (z = (1024 / l) / 2; z < 1024; z += 1024 / l) {
-      m[z] = ((m[z - (1024 / l) / 2] + m[z + (1024 / l) / 2]) / 2) + (Math.random() * -d + d);
+  for (i = (1024 / l) / 2; i < 1024; i += 1024 / l) {
+      m[i] = ((m[i - (1024 / l) / 2] + m[i + (1024 / l) / 2]) / 2) + (Math.random() * -d + d);
   }
   d *= 0.45;
 }
