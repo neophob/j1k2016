@@ -68,7 +68,7 @@ setInterval(function() {
   // __ draw PLANETS
   i=8*Math.cos(u/180);
 
-  c.fillStyle = "rgba(255,255,255,.06)";
+  c.fillStyle = "rgba(255,255,255,.07)";
   c.beginPath();
   c.arc(100, -h/8, h/2-i, 0, 7); //2*Math.PI was replaced with 7
   c.arc(w, h/4, h/5+i, 0, 7);
@@ -89,8 +89,8 @@ setInterval(function() {
 	// __ draw CANONS, s: startpos, t: targetpos, l:lifetime
   c.strokeStyle = "rgba(255,0,255,.3)";
   c.lineWidth = 6;
-	for (l = 0; l<w; l++) {
-    if (l==3) c.strokeStyle = "rgba(255,0,255,.006)";
+	for (l = 0; l<h; l++) {
+    if (l==3) c.strokeStyle = "rgba(255,0,255,.01)";
 		if (f[l] && f[l].l > 0) {
       c.beginPath();
 	    c.moveTo(f[l].s, h/2);
